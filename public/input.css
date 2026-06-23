@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@layer base{ /***** base is mean base html like h1 p ,a ,etc *****/
+
+    
+    h1{
+        @apply text-2xl text-amber-300;
+    }
+    input{
+        @apply border rounded-[5px];
+    }
+    form{
+        @apply flex flex-col justify-center items-center h-full ;
+    }
+}
+@layer components{ /***** components is used for reuasble custom class *****/
+    .tic-container {
+        @apply absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 grid content-center lg:grid-cols-[220px_220px_220px] 
+                lg:grid-rows-[220px_220px_220px] grid-rows-[150px_150px_150px] grid-cols-[150px_150px_150px] w-fit p-2.5
+                transition-[grid-template-columns,grid-template-rows]
+                duration-100 ease-out;
+    }
+    .tic-id {
+        @apply flex text-9xl text-center justify-center items-center border m-1.5 bg-blue-50 hover:bg-blue-100 delay-75 ease-in;
+    }
+}

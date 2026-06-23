@@ -1,0 +1,25 @@
+<%- include("./partials/head.ejs") %>
+
+<body class=" bg-[url('/image/Login.jpg')] bg-no-repeat bg-cover">
+    <div class="flex flex-col items-center justify-center min-h-screen ">
+        <div class="container">
+            <form id="LoginForm">
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Enter your Username">
+                <div id="usernameErr" class="text-red-600"></div>
+                <label for="password" class="mt-4">password</label>
+                <input type="password" name="password" placeholder="Enter your password">
+                <div id="passwordErr" class="text-red-600"></div>
+            </form>
+            <div class="flex justify-end mr-2.5 items-end h-min">
+                <button form="LoginForm" class="border rounded-[5px] mb-1.5 hover:bg-blue-550 bg-blue-400
+                hover:text-white delay-50 shadow-xs shadow-blue-500 w-20">
+                    Login
+                </button>
+            </div>
+        </div>
+        </div>
+    <script src="./logic/login.js"></script>
+</body>
+
+</html>

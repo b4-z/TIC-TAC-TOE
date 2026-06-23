@@ -1,0 +1,50 @@
+<%- include("./partials/head.ejs") %>
+
+<body class=" bg-[url('/image/Login2.png')] bg-no-repeat bg-cover min-h-screen flex flex-col">
+    <nav class="flex justify-end gap-2.5 bg-amber-400 h-12">
+        
+        <div><%= username %></div>
+        <div>UrProfilePic</div>
+    </nav>
+
+    <%- include("./partials/selectGame.ejs") %>
+
+    <main class="flex flex-col grow hidden" id="main">
+        <div class="text-center text-5xl" id="X"><p>X's Wins: 0</p></div>
+        <div class="text-center text-5xl" id="O"><p>O's Wins: 0</p></div>
+        <div class="text-center text-5xl" id="draws"><p>Draws: 0</p></div>
+
+        <div class="text-center text-7xl" id="turn">Turn:X</div>
+
+        <div id="main-content" class="relative grow gap-5">
+
+            <div class="tic-container">
+
+                <div class="tic-id" ></div>
+                <div class="tic-id" ></div>
+                <div class="tic-id" ></div>
+                <div class="tic-id" ></div>
+                <div class="tic-id"></div>
+                <div class="tic-id" ></div>
+                <div class="tic-id"></div>
+                <div class="tic-id" ></div>
+                <div class="tic-id"></div>
+            </div>
+            
+            <div class="absolute bottom-0 flex justify-center md:justify-end w-full min-h-auto">
+                <button class="border bg-amber-400 rounded-3xl text-4xl p-5 md:mr-20 md:mb-10" id="restart"><p>restart</p></button>
+            </div>
+        </div>
+    </main>
+    </div>
+    <div id="overlay" class="fixed flex flex-col inset-0 z-10 bg-black/50 items-center justify-center hidden gap-5">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <button class="border rounded-2xl
+         bg-white text-center p-2" id="newGame"><p>New Game</p>
+        </button>
+        </div>
+    </div>
+    <script type="module" src="./logic/index.js"></script>
+</body>
+
+</html>
