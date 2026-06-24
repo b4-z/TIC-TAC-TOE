@@ -1,10 +1,11 @@
 <%- include("./partials/head.ejs") %>
 
-<body class=" bg-[url('/image/Login2.png')] bg-no-repeat bg-cover min-h-screen flex flex-col">
-    <nav class="flex justify-end gap-2.5 bg-amber-400 h-12">
+<body class=" bg-[url('/image/index.png')] bg-no-repeat bg-cover min-h-screen flex flex-col">
+    <nav class="flex justify-end gap-2.5 bg-gray-700 h-12">
         
-        <div><%= username %></div>
-        <div>UrProfilePic</div>
+        <div class="text-white"><%= username %></div>
+        <div>prflPic</div>
+        <div class="ml-7 mr-5"><button class="border rounded-2xl bg-red-800 text-white w-30" id="logout-btn">Logout</button></div>
     </nav>
 
     <%- include("./partials/selectGame.ejs") %>

@@ -1,8 +1,8 @@
 <%- include("./partials/head.ejs") %>
 
-<body class=" bg-[url('/image/Login.jpg')] bg-no-repeat bg-cover">
+<body class=" bg-[url('/image/login.jpg')] bg-no-repeat bg-cover">
     <div class="flex flex-col items-center justify-center min-h-screen ">
-        <div class="container">
+        <div class="bg-white h-80 w-70 border border-amber-200 rounded-2xl ">
             <form id="signUpForm">
                 <label for="email">Email</label>
                 <input type="text" name="email" placeholder="Enter your email">
@@ -17,10 +17,11 @@
                 <input type="password" name="confirmPassword" placeholder="Enter your password">
                 <div id="confirmPasswordemailErr" class="text-red-600"></div>
             </form>
-            <div class="flex justify-end mr-2.5 items-end h-min">
+            <div  class="text-white flex justify-center w-full mt-2.5 text-[16px]"><a href="/login"><b>Have account ? login </b></a> </div>
+            <div class="flex justify-end mr-2.5 items-end h-min mt-3.5">
                 <button form="signUpForm" class="border rounded-[5px] mb-1.5 hover:bg-blue-550 bg-blue-400
                 hover:text-white delay-50 shadow-xs shadow-blue-500 w-20">
-                    Login
+                    Signup
                 </button>
             </div>
         </div>

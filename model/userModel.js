@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {isEmail} = require('validator');
+const {isEmail, isStrongPassword} = require('validator');
 const bcrypt = require('bcrypt');
 
 // we have mongoose hooks that can be used before and after like: pre and post
@@ -23,7 +23,17 @@ const userSchemaDef = {
     password: {
         type: String,
         required: true,
-        minlength: [8,"password must be atleast 8 char"]
+        minlength: [8,"password must be atleast 8 char"],
+        validate: {
+            validator: function(value){
+                return isStrongPassword(value, {
+                    minLength: 8,
+                    minUppercase: 1,
+                    minNumbers: 1,
+                    minSymbols: 1
+                });
+            }, message: "Password must include uppercase, lowercase, numbers, and special characters."
+        }
     },
 
 }
@@ -39,6 +49,7 @@ userSchema.post('save',function (doc,next){
 
 // we need to hash the password bfore the doc got saved so we use pre hook 
 userSchema.pre('save', async function (){
+    if(!this.isModified('password'))
     console.log('user creating and saving',this);//this still the documnt but in the local variable const "user" = await User.create({email: reciivedEmail, username: recivedUsername, password: recivedPassword})
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password,salt);

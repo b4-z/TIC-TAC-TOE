@@ -6,17 +6,20 @@ const turnTxt = document.querySelector('#turn');
 const x = document.querySelector("#X");
 const o = document.querySelector("#O");
 const draws = document.querySelector("#draws");
-const multiSingle = document.getElementById('m/s')
-const easyHard = document.getElementById('e/h')
-const localOnline = document.getElementById('l/o')
+const multiSingle = document.getElementById('m/s');
+const easyHard = document.getElementById('e/h');
+const localOnline = document.getElementById('l/o');
 
-const single = document.getElementById('single')
-const multi = document.getElementById('multi')
-const hard = document.getElementById('hard')
-const easy = document.getElementById('easy')
-const online = document.getElementById('online')
-const local = document.getElementById('local')
-const main = document.getElementById('main')
+const logoutBtn = document.getElementById('logout-btn')
+
+const single = document.getElementById('single');
+const multi = document.getElementById('multi');
+const hard = document.getElementById('hard');
+const easy = document.getElementById('easy');
+const online = document.getElementById('online');
+const local = document.getElementById('local');
+const main = document.getElementById('main');
+const backBtn = document.querySelectorAll('.back-btn');
 
 
 
@@ -30,6 +33,7 @@ const winPatterns = [
     [0,4,8],
     [2,4,6]
 ];
+
 
 import { io } from "/socket.io/socket.io.esm.min.js";
 
@@ -109,3 +113,28 @@ hard.addEventListener('click', ()=>{
     main.classList.remove('hidden');
 
 })
+
+backBtn.forEach(btn => {
+    btn.addEventListener('click', () => {
+        if(easyHard.classList.contains('hidden')){
+            
+            localOnline.classList.add('hidden');
+            multiSingle.classList.remove('hidden');
+
+        }else{
+
+            easyHard.classList.add('hidden');
+            multiSingle.classList.remove('hidden');
+
+        }
+        
+        console.log("localOnline:", localOnline);
+    console.log("has class hidden before:", localOnline?.classList.contains('hidden'));
+
+    });
+});
+
+const logout = ()=>{
+    window.location.href = '/logout'
+}
+logoutBtn.addEventListener('click', logout)

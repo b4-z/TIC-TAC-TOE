@@ -101,5 +101,10 @@ module.exports.login_post = async (req,res)=>{
     }
 }
 
+module.exports.logout_get = (req, res)=>{
+    res.cookie('log','', {maxAge: 1});
+    res.redirect('/');
+}
+
 // both mwthod are just some variable that hold a function which we used module.exports to can be used in other files
 // but just for info that we dont have use the first method to send the variables but we can use the 2nd method too 
