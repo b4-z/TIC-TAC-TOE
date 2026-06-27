@@ -19,6 +19,7 @@ function createRoomLocal(socket){
 
 
 function onlineRoom(socket){
+    
     if(!waitingPlayer){
         waitingPlayer = socket
         let room = crypto.randomUUID();
@@ -32,7 +33,21 @@ function onlineRoom(socket){
     const partner = waitingPlayer;
     waitingPlayer = null;
 
+
+    
     const room = rooms[partner.id];
+    // FIX: If the partner left, make THIS socket the new waiting player instead of crashing
+    if (!playerRoom[room]) {
+        waitingPlayer = socket;
+        let newRoom = crypto.randomUUID();
+        rooms[socket.id] = newRoom;
+        games[newRoom] = new Game();
+        socket.join(newRoom);
+        playerRoom[newRoom] = {X: socket.id, O: null, type: 'online'}
+        socket.emit('waiting', {msg: 'waiting'})
+        return;
+    }
+
     rooms[socket.id] = room;
 
     playerRoom[room].O = socket.id;

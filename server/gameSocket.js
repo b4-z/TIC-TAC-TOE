@@ -41,6 +41,7 @@ function intiateServer(server){
                 waitingPlayer = null;
             }
             const room = rooms[socket.id];
+            socket.to(room).emit('oppenetDiconnected');
             if (room) {
                 delete games[room];
                 delete rooms[socket.id];

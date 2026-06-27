@@ -20,7 +20,7 @@ const online = document.getElementById('online');
 const local = document.getElementById('local');
 const main = document.getElementById('main');
 const backBtn = document.querySelectorAll('.back-btn');
-
+const exit = document.getElementById('exit');
 
 
 const winPatterns = [
@@ -35,10 +35,17 @@ const winPatterns = [
 ];
 
 
+
 import { io } from "/socket.io/socket.io.esm.min.js";
 
 
 const socket = io();
+
+socket.on('oppenetDiconnected', ()=>{
+    alert('Opponent disconnected');
+    main.classList.add('hidden')
+    localOnline.classList.remove('hidden')
+})
 
 socket.on('gameState', (serverGame) => {
     tics.forEach((tic, index) => {
@@ -138,3 +145,15 @@ const logout = ()=>{
     window.location.href = '/logout'
 }
 logoutBtn.addEventListener('click', logout)
+
+exit.addEventListener('click', ()=>{    
+    const confirmExit = confirm();
+    if(!confirmExit)return;
+    if(socket.connected){
+    socket.disconnect();
+    }
+    window.location.reload();
+    
+
+})
+
