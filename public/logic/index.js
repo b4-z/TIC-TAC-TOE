@@ -113,6 +113,7 @@ online.addEventListener('click', ()=>{
 easy.addEventListener('click', ()=>{
     easyHard.classList.add('hidden');
     main.classList.remove('hidden');
+    socket.emit('easy');
 })
 
 hard.addEventListener('click', ()=>{

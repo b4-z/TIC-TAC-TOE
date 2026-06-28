@@ -1,3 +1,4 @@
+const { Socket } = require('socket.io')
 const Game = require('../model/Game')
 const crypto = require('crypto')
 
@@ -62,7 +63,15 @@ function onlineRoom(socket){
     socket.emit('gameState', games[room].gameState())
 }
 
+function easyRoom(socket){
+    let room = crypto.randomUUID();
+    rooms[socket.id] = room;
+    games[room] = new Game();
+    socket.join(room);
+    playerRoom[room] = {X: socket.id, O: 'BOT', type:'easy'};
+    socket.emit('gameState', games[room].gameState());
+}
 
 
 
-module.exports = {createRoomLocal, games, rooms, playerRoom,waitingPlayer, onlineRoom};
+module.exports = {createRoomLocal, games, rooms, playerRoom,waitingPlayer, onlineRoom, easyRoom};
