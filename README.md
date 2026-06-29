@@ -28,6 +28,16 @@ The project focuses on authentication, real-time communication, and backend arch
 
 ---
 
+## 📝 Development Notes
+
+The Easy Bot, multiplayer functionality, UI, backend, and the rest of this project were developed by me.
+
+The Hard Bot uses the Minimax algorithm. Since I was not familiar with the algorithm at the time, I implemented it with the help of an AI coding agent to include an unbeatable difficulty level in the game.
+
+I have kept this implementation in the project to be transparent about where AI assistance was used. Everything else reflects my own work and learning throughout the development of this project.
+
+---
+
 ## 📦 Installation
 
 ```bash
