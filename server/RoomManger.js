@@ -73,5 +73,14 @@ function easyRoom(socket){
 }
 
 
+function hardRoom(socket){
+    let room = crypto.randomUUID();
+    rooms[socket.id] = room;
+    games[room] = new Game();
+    socket.join(room);
+    playerRoom[room] = {X: socket.id, O: 'BOT', type:'hard'};
+    socket.emit('gameState', games[room].gameState());
+}
 
-module.exports = {createRoomLocal, games, rooms, playerRoom,waitingPlayer, onlineRoom, easyRoom};
+
+module.exports = {createRoomLocal, games, rooms, playerRoom,waitingPlayer, onlineRoom, easyRoom, hardRoom};

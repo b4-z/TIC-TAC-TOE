@@ -1,6 +1,6 @@
 const {Server} = require('socket.io')
-const {createRoomLocal, games, rooms, playerRoom, waitingPlayer, onlineRoom, easyRoom} = require('./RoomManger')
-const {easyBot} = require('./bot');
+const {createRoomLocal, games, rooms, playerRoom, waitingPlayer, onlineRoom, easyRoom, hardRoom} = require('./RoomManger')
+const {easyBot, hardBot} = require('./bot');
 let io;
 
 function intiateServer(server){
@@ -17,6 +17,9 @@ function intiateServer(server){
 
         socket.on('easy', ()=>{
             easyRoom(socket);
+        })
+        socket.on('hard', ()=>{
+            hardRoom(socket);
         })
         socket.on('move', (index) => {
             const room = rooms[socket.id];
@@ -38,6 +41,12 @@ function intiateServer(server){
 
                 } 
                 io.to(room).emit('gameState', game.gameState());
+            }
+            if(player.type === 'hard'){
+                let bestMove = hardBot(game.Board, game.turn);
+                if(game.turn === 'O'){
+                    game.makeMove(bestMove);
+                }
             }
 
             io.to(room).emit('gameState',game.gameState())
@@ -68,10 +77,6 @@ function intiateServer(server){
     })
     return io;
 }
-
-
-
-
 
 
 

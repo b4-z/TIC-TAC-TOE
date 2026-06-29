@@ -119,7 +119,7 @@ easy.addEventListener('click', ()=>{
 hard.addEventListener('click', ()=>{
     easyHard.classList.add('hidden');
     main.classList.remove('hidden');
-
+    socket.emit('hard');
 })
 
 backBtn.forEach(btn => {
